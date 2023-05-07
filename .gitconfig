@@ -1,3 +1,0 @@
-# .gitconfig
-[safe]
-    directory = %(prefix)//wsl$/Ubuntu/www/blog
