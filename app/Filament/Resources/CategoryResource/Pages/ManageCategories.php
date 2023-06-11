@@ -10,6 +10,9 @@ class ManageCategories extends ManageRecords
 {
     protected static string $resource = CategoryResource::class;
 
+    /**
+     * @throws \Exception
+     */
     protected function getActions(): array
     {
         return [

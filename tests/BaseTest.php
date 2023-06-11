@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class BaseTest extends TestCase
 {
     use RefreshDatabase;
+
     public User $admin;
 
     protected function setUp(): void

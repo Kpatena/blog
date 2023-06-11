@@ -47,8 +47,7 @@ class PostResource extends Resource
                     Forms\Components\FileUpload::make('thumbnail'),
                     Forms\Components\Select::make('category_id')
                         ->multiple()
-                        ->relationship('categories', 'title')
-                        ->required(),
+                        ->relationship('categories', 'title'),
                 ])->columnSpan(4),
             ])->columns(12);
     }
@@ -62,7 +61,8 @@ class PostResource extends Resource
                 Tables\Columns\IconColumn::make('active')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('published_at')
-                    ->dateTime(),
+                    ->dateTime()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('user.name'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
@@ -73,13 +73,12 @@ class PostResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])->defaultSort('published_at', 'desc');
     }
 
     public static function getRelations(): array
@@ -94,7 +93,6 @@ class PostResource extends Resource
         return [
             'index' => Pages\ListPosts::route('/'),
             'create' => Pages\CreatePost::route('/create'),
-            'view' => Pages\ViewPost::route('/{record}'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
     }

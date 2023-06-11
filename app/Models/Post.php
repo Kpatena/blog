@@ -67,7 +67,8 @@ class Post extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function shortBody(): string{
+    public function shortBody(): string
+    {
         return Str::words(strip_tags($this->body));
     }
 

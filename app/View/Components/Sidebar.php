@@ -2,18 +2,21 @@
 
 namespace App\View\Components;
 
+use App\Actions\Post\GetTopCategoriesAction;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Sidebar extends Component
 {
+    private GetTopCategoriesAction $getTopCategoriesAction;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(GetTopCategoriesAction $getTopCategoriesAction)
     {
-        //
+        $this->getTopCategoriesAction = $getTopCategoriesAction;
     }
 
     /**
@@ -21,6 +24,8 @@ class Sidebar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.sidebar');
+        $categories = $this->getTopCategoriesAction->execute();
+
+        return view('components.sidebar', compact('categories'));
     }
 }
