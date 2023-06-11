@@ -8,16 +8,7 @@
     <meta name="author" content="">
     <meta name="description" content="">
 
-    <!-- Tailwind -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
-
-        .font-family-karla {
-            font-family: karla;
-        }
-    </style>
-
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <!-- Font Awesome -->
@@ -47,7 +38,7 @@
                 Home
             </a>
             @foreach($categories as $category)
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">
+                <a href="{{ route('by-category', $category->slug) }}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">
                     {{$category->title}}
                 </a>
             @endforeach

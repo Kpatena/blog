@@ -64,7 +64,6 @@ class PostController extends Controller
             ->limit(1)
             ->first();
 
-
         return \view('post.view', compact('post', 'prev', 'next'));
     }
 
@@ -92,7 +91,10 @@ class PostController extends Controller
         //
     }
 
-    public function byCategory(Category $category, GetCategoryPostsAction $action) {
+    public function byCategory(Category $category, GetCategoryPostsAction $action): View
+    {
         $posts = $action->execute($category);
+
+        return view('home', compact('posts'));
     }
 }

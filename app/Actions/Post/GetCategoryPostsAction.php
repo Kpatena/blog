@@ -5,6 +5,7 @@ namespace App\Actions\Post;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 
 class GetCategoryPostsAction
@@ -23,12 +24,14 @@ class GetCategoryPostsAction
      */
     public function execute(Category $category): LengthAwarePaginator
     {
-        return Post::query()
-            ->join('category_post', 'posts.id', '=', 'category_post.post_id')
-            ->where('category_post.category_id', '=', $category->id)
+        return Post::with('categories')
+            ->whereHas('categories', function (Builder $query) use ($category) {
+                $query->where('categories.id', '=', $category->id);
+            })
             ->where('active', '=', 1)
             ->whereDate('published_at', '<=', Carbon::now())
             ->orderBy('published_at', 'desc')
             ->paginate(5);
+
     }
 }

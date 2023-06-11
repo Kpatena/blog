@@ -3,8 +3,6 @@
 namespace App\Actions\Post;
 
 use App\Models\Category;
-use App\Models\Post;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -26,8 +24,8 @@ class GetTopCategoriesAction
     public function execute(): array|Collection
     {
         return Category::query()
-            ->leftJoin('category_post', 'categories.id', '=', 'category_post.category_id')
-            ->leftJoin('posts', 'posts.id', '=', 'category_post.post_id')
+            ->join('category_post', 'categories.id', '=', 'category_post.category_id')
+            ->join('posts', 'posts.id', '=', 'category_post.post_id')
             ->select('categories.title', 'categories.slug', DB::raw('count(post_id) as total'))
             ->where('posts.active', '=', 1)
             ->whereDate('posts.published_at', '<=', Carbon::now())
