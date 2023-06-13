@@ -30,6 +30,8 @@ class TextWidgetResource extends Resource
                     ->required()
                     ->maxLength(2048),
                 Forms\Components\RichEditor::make('content'),
+                Forms\Components\TextInput::make('meta_title'),
+                Forms\Components\TextInput::make('meta_description'),
                 Forms\Components\Toggle::make('active')
                     ->required(),
             ])->columns(1);

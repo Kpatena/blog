@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beemou</title>
-    <meta name="author" content="">
-    <meta name="description" content="">
+    <title>{{ $metaTitle ?: 'Beemou' }}</title>
+    <meta name="author" content="Beemou">
+    <meta name="description" content="{{ $metaDescription ?: 'Blog about butterflies and bees' }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- AlpineJS -->

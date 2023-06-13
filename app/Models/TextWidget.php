@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Cache;
  * @property string|null $image
  * @property string $title
  * @property string|null $content
+ * @property string|null $meta_title
+ * @property string|null $meta_description
  * @property int $active
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -41,9 +43,19 @@ class TextWidget extends Model
 
     protected $guarded = [];
 
+    public static function get(string $key): ?TextWidget
+    {
+        return Cache::remember('text-widget-'.$key, 24, function () use ($key) {
+            return TextWidget::query()
+                ->where('key', '=', $key)
+                ->where('active', '=', 1)
+                ->first();
+        });
+    }
+
     public static function getTitle(string $key)
     {
-        $widget = Cache::remember('text-widget-'.$key, 24, function () use ($key) {
+        $widget = Cache::remember('text-widget-title'.$key, 24, function () use ($key) {
             return TextWidget::query()
                 ->where('key', '=', $key)
                 ->where('active', '=', 1)
@@ -59,7 +71,7 @@ class TextWidget extends Model
 
     public static function getContent(string $key)
     {
-        $widget = Cache::remember('text-widget-'.$key, 24, function () use ($key) {
+        $widget = Cache::remember('text-widget-content-'.$key, 24, function () use ($key) {
             return TextWidget::query()
                 ->where('key', '=', $key)
                 ->where('active', '=', 1)
@@ -71,5 +83,18 @@ class TextWidget extends Model
         }
 
         return '';
+    }
+
+    public function getImage(): ?string
+    {
+        if (! $this->image) {
+            return null;
+        }
+
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        } else {
+            return asset('storage/'.$this->image);
+        }
     }
 }

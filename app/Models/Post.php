@@ -26,6 +26,8 @@ use Illuminate\Support\Str;
  * @property int $user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $meta_title
+ * @property string|null $meta_description
  * @property-read Collection<int, Category> $categories
  * @property-read int|null $categories_count
  * @property-read User|null $user

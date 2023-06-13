@@ -14,8 +14,11 @@ class AppLayout extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(GetTopCategoriesAction $getTopCategoriesAction)
-    {
+    public function __construct(
+        GetTopCategoriesAction $getTopCategoriesAction,
+        public ?string $metaTitle = null,
+        public ?string $metaDescription = null
+    ) {
         $this->getTopCategoriesAction = $getTopCategoriesAction;
     }
 

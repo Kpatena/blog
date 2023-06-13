@@ -1,4 +1,4 @@
-<x-app-layout meta-description="Beemou blog about the birds and the bees">
+<x-app-layout :meta-title="$category->title" meta-description="Beemou blog about the birds and the bees">
     <!-- Posts Section -->
     <section class="w-full md:w-2/3 flex flex-col items-center px-3">
 

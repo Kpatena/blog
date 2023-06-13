@@ -95,6 +95,6 @@ class PostController extends Controller
     {
         $posts = $action->execute($category);
 
-        return view('home', compact('posts'));
+        return view('post.index', compact('posts', 'category'));
     }
 }
