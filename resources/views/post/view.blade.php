@@ -5,7 +5,7 @@
         <article class="flex flex-col shadow my-4">
             <!-- Article Image -->
             <a href="#" class="inline-block m-auto max-w-2xl hover:opacity-75">
-                <img src="{{ $post->getThumbnail() }}">
+                <img src="{{ $post->getThumbnail() }}" alt="{{ $post->thumbnail }}">
             </a>
             <div class="bg-white flex flex-col justify-start p-6">
                 <div class="flex gap-4">
@@ -35,10 +35,12 @@
                 @endif
             </div>
             <div class="w-1/2">
+                @if($next)
                 <a href="{{ route('view', $next) }}" class="w-1/2 bg-white shadow hover:shadow-md text-right p-6">
                     <p class="text-lg text-blue-800 font-bold flex items-center justify-end">Next <i class="fas fa-arrow-right pl-1"></i></p>
                     <p class="pt-2">{{ \Illuminate\Support\Str::words($next->title, 5) }}</p>
                 </a>
+                @endif
             </div>
         </div>
 

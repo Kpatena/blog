@@ -10,7 +10,7 @@
             @endforeach
         </div>
 
-        <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">
+        <a href="{{ route('view', $post) }}" class="text-3xl font-bold hover:text-gray-700 pb-4">
             {{ $post->title }}
         </a>
         <a href="{{ route('view', $post) }}" class="text-sm pb-3">
@@ -20,6 +20,6 @@
         <a href="{{ route('view', $post) }}" class="pb-6">
             {{ $post->shortBody() }}
         </a>
-        <a href="#" class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></a>
+        <a href="{{ route('view', $post) }}" class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></a>
     </div>
 </article>
