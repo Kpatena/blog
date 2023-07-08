@@ -76,7 +76,7 @@ class Post extends Model
 
     public function getThumbnail(): ?string
     {
-        if (!$this->thumbnail) {
+        if (! $this->thumbnail) {
             return '';
         }
 

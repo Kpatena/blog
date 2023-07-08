@@ -24,6 +24,6 @@ class GetPostsAction
         return Post::query()
             ->where('active', '=', 1)
             ->orderBy('published_at', 'desc')
-            ->paginate(5);
+            ->fastPaginate(5);
     }
 }

@@ -9893,6 +9893,11 @@
             /**
      * 
      *
+     * @method static mixed getJobBackoff(mixed $job)
+     * @method static mixed getJobExpiration(mixed $job)
+     * @method static void createPayloadUsing(callable|null $callback)
+     * @method static \Illuminate\Container\Container getContainer()
+     * @method static void setContainer(\Illuminate\Container\Container $container)
      * @see \Illuminate\Queue\QueueManager
      * @see \Illuminate\Queue\Queue
      * @see \Illuminate\Support\Testing\Fakes\QueueFake
@@ -10372,64 +10377,6 @@
         {
                         /** @var \Illuminate\Support\Testing\Fakes\QueueFake $instance */
                         return $instance->setConnectionName($name);
-        }
-                    /**
-         * Get the backoff for an object-based queue handler.
-         *
-         * @param mixed $job
-         * @return mixed 
-         * @static 
-         */ 
-        public static function getJobBackoff($job)
-        {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
-                        return $instance->getJobBackoff($job);
-        }
-                    /**
-         * Get the expiration timestamp for an object-based queue handler.
-         *
-         * @param mixed $job
-         * @return mixed 
-         * @static 
-         */ 
-        public static function getJobExpiration($job)
-        {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
-                        return $instance->getJobExpiration($job);
-        }
-                    /**
-         * Register a callback to be executed when creating job payloads.
-         *
-         * @param callable|null $callback
-         * @return void 
-         * @static 
-         */ 
-        public static function createPayloadUsing($callback)
-        {            //Method inherited from \Illuminate\Queue\Queue         
-                        \Illuminate\Queue\SyncQueue::createPayloadUsing($callback);
-        }
-                    /**
-         * Get the container instance being used by the connection.
-         *
-         * @return \Illuminate\Container\Container 
-         * @static 
-         */ 
-        public static function getContainer()
-        {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
-                        return $instance->getContainer();
-        }
-                    /**
-         * Set the IoC container instance.
-         *
-         * @param \Illuminate\Container\Container $container
-         * @return void 
-         * @static 
-         */ 
-        public static function setContainer($container)
-        {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
-                        $instance->setContainer($container);
         }
          
     }
@@ -20680,6 +20627,45 @@
      
 }
 
+    namespace Illuminate\Database\Eloquent\Relations { 
+            /**
+     * 
+     *
+     */ 
+        class Relation {
+                    /**
+         * 
+         *
+         * @see \Hammerstone\FastPaginate\RelationMixin::fastPaginate()
+         * @param mixed $perPage
+         * @param mixed $columns
+         * @param mixed $pageName
+         * @param mixed $page
+         * @static 
+         */ 
+        public static function fastPaginate($perPage = null, $columns = [], $pageName = 'page', $page = null)
+        {
+                        return \Illuminate\Database\Eloquent\Relations\Relation::fastPaginate($perPage, $columns, $pageName, $page);
+        }
+                    /**
+         * 
+         *
+         * @see \Hammerstone\FastPaginate\RelationMixin::simpleFastPaginate()
+         * @param mixed $perPage
+         * @param mixed $columns
+         * @param mixed $pageName
+         * @param mixed $page
+         * @static 
+         */ 
+        public static function simpleFastPaginate($perPage = null, $columns = [], $pageName = 'page', $page = null)
+        {
+                        return \Illuminate\Database\Eloquent\Relations\Relation::simpleFastPaginate($perPage, $columns, $pageName, $page);
+        }
+         
+    }
+     
+}
+
     namespace Illuminate\View { 
             /**
      * 
@@ -22360,6 +22346,36 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->mergeConstraintsFrom($from);
+            }
+             
+                /**
+             * 
+             *
+             * @see \Hammerstone\FastPaginate\FastPaginate::paginate()
+             * @param mixed $perPage
+             * @param mixed $columns
+             * @param mixed $pageName
+             * @param mixed $page
+             * @static 
+             */ 
+            public static function simpleFastPaginate($perPage = null, $columns = [], $pageName = 'page', $page = null)
+            {
+                                return \Illuminate\Database\Eloquent\Builder::simpleFastPaginate($perPage, $columns, $pageName, $page);
+            }
+             
+                /**
+             * 
+             *
+             * @see \Hammerstone\FastPaginate\FastPaginate::paginate()
+             * @param mixed $perPage
+             * @param mixed $columns
+             * @param mixed $pageName
+             * @param mixed $page
+             * @static 
+             */ 
+            public static function fastPaginate($perPage = null, $columns = [], $pageName = 'page', $page = null)
+            {
+                                return \Illuminate\Database\Eloquent\Builder::fastPaginate($perPage, $columns, $pageName, $page);
             }
              
                 /**

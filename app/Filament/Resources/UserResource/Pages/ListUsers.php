@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\PostResource\Pages;
+namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Custom\CustomListRecords;
-use App\Filament\Resources\PostResource;
+use App\Filament\Resources\UserResource;
 use Filament\Pages\Actions;
 
-class ListPosts extends CustomListRecords
+class ListUsers extends CustomListRecords
 {
-    protected static string $resource = PostResource::class;
+    protected static string $resource = UserResource::class;
 
     protected function getActions(): array
     {
